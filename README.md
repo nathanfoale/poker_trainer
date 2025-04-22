@@ -24,13 +24,7 @@ This script is an evolution of a simpler poker simulator, incorporating several 
     *   **AF:** Post-Flop Aggression Factor (Bets+Raises / Calls)
     *   **Net:** Total chips won or lost during the session.
     *   A summary report and simple ASCII winnings graph are shown at the end.
-*   **Configurable Settings:** Control various parameters via command-line flags:
-    *   Number of hands (`--hands`)
-    *   Starting bankroll (`--bankroll`)
-    *   Big Blind amount (`--bb`)
-    *   Villain profile (`--villain`)
-    *   Monte Carlo simulation count (`--sims`)
-    *   Random seed for reproducibility (`--seed`)
+*   **Configurable Settings:** Control various parameters via command-line flags (see Usage below).
 *   **Colourful CLI:** Uses ANSI escape codes for coloured suits and key information, maintaining a clear and engaging interface.
 
 ## Demo Output
@@ -63,3 +57,43 @@ Action on Hero (BU) Stack: 2000 To Call: 60
 Your options:
   fold (f) | call 60 (c) [Odds: 29%] | raise 180 (min, r1) [FE: 25%] | raise 195 (½ pot, r2) [FE: 40%] | raise 251 (¾ pot, r3) [FE: 50%] | raise 310 (pot, r4) [FE: 60%] | raise 2000 (all-in, r5) [FE: 98%]
 > Your move: _
+```
+
+
+Requirements:
+
+Python >= 3.8
+treys library (pip install treys)
+
+Installation:
+Clone the repository (or download the script):
+
+# If using Git
+git clone https://github.com/<your-username>/poker_trainer.git
+cd poker_trainer
+
+
+
+Command-Line Options:
+
+--hands N: Play exactly N hands and then exit (showing stats).
+--bankroll N: Set the starting stack for each player to N chips (default: 2000).
+--bb N: Set the Big Blind amount to N (Small Blind will be N/2, default: 20).
+--villain [tight|loose|maniac]: Set the profile for all opponent AI players (default: tight).
+--sims N: Set the number of Monte Carlo simulations for equity calculations (default: 1000). Higher numbers are more accurate but slower.
+--seed N: Use a specific random seed N for reproducible hands/shuffles.
+--help: Show all available options.
+
+
+Gameplay Controls
+When it's your turn (Action on Hero...), you'll see a list of available moves and will be prompted with > Your move:. Type one of the following commands and press Enter:
+
+Fold: f / fold
+
+Check (only available if there's no bet to call): x / check
+
+Call (only available if there's a bet to call): c / call
+
+Raise: r1 / r2  / r(amount)
+
+The game will validate your input and proceed accordingly. If the input is invalid, it will prompt you again. Press Ctrl+C to exit the trainer early and view session stats.
